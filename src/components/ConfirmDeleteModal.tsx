@@ -1,24 +1,24 @@
-import "../assets/CSS/Modal.css"; 
-// components/ConfirmDeleteModal.tsx
+type Row = Record<string, unknown>;
+
 interface ConfirmDeleteModalProps {
-  onConfirm: () => void;
   onCancel: () => void;
+  deleteTarget: { row: Row; index: number };
   message?: string;
 }
 
 export function ConfirmDeleteModal({
   onCancel,
-  deleteTarget, 
+  deleteTarget,
   message = "Tem certeza que deseja deletar este item?",
 }: ConfirmDeleteModalProps) {
+  const api_url = import.meta.env.VITE_API_URL;
 
-    const api_url = import.meta.env.VITE_API_URL; 
-    async function handleConfirm()
-    {
-      await fetch(`${api_url}/api/Usuarios/${deleteTarget.row.id}`, {
-        method:"DELETE"
-      }).then(res => res.ok && onCancel() )
-    }
+  async function handleConfirm() {
+    const id = deleteTarget.row.id as string;
+    const res = await fetch(`${api_url}/api/Usuarios/${id}`, { method: "DELETE" });
+    if (res.ok) onCancel();
+  }
+
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div className="modal-box modal-danger" onClick={(e) => e.stopPropagation()}>
@@ -31,4 +31,3 @@ export function ConfirmDeleteModal({
     </div>
   );
 }
-

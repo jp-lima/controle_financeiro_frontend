@@ -72,10 +72,9 @@ export function UsuarioPage() {
         headers={headers}
         data={usuarios}
         showActions={true}
-        onDelete={(row, index) => console.log("deletar", row, index)}
         onAdd={() => console.log("abrir modal de adicionar")}
-        renderAddForm={({ onSubmit, onCancel }) => (
-          <UserFormModal onSubmit={onSubmit} onCancel={onCancel} />
+        renderAddForm={({ onCancel }) => (
+          <UserFormModal onCancel={onCancel} />
         )}
       />
 

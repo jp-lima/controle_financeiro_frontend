@@ -1,16 +1,10 @@
 import { useState } from "react";
 
-interface UserFormData {
-  nome: string;
-  idade: number;
-}
-
 interface UserFormModalProps {
-  onSubmit: (data: UserFormData) => void;
   onCancel: () => void;
 }
 
-export function UserFormModal({ onSubmit, onCancel }: UserFormModalProps) {
+export function UserFormModal({ onCancel }: UserFormModalProps) {
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [isLoading, setIsLoading] = useState(false); 

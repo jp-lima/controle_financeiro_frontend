@@ -1,36 +1,32 @@
-// components/Table.tsx
-import { useState, ReactNodeuse } from "react";
+import { useState, type ReactNode } from "react";
 import { ConfirmDeleteModal } from "./ConfirmDeleteModal";
 import { TransacaoFormModal } from "./TransacoesFormModal";
-import "../assets/CSS/Table.css"
 
-type Row = Record<string, string | number>;
+type Row = Record<string, unknown>;
 
-interface TableProps {
+interface TableProps<T extends Row> {
   headers: string[];
-  data: Row[];
+  data: T[];
   showActions?: boolean;
-  onDelete?: (row: Row, index: number) => void;
-  onAdd?: (newRow: Row) => void;
+  onAdd?: (newRow: T) => void;
   renderAddForm?: (props: {
-    onSubmit: (data: Row) => void;
+    onSubmit: (data: T) => void;
     onCancel: () => void;
   }) => ReactNode;
 }
 
-export function Table({
+export function Table<T extends Row>({
   headers,
   data,
   showActions = false,
-  onDelete,
   onAdd,
   renderAddForm,
-}: TableProps) {
+}: TableProps<T>) {
   const [search, setSearch] = useState("");
-  const [deleteTarget, setDeleteTarget] = useState<{ row: Row; index: number } | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<{ row: T; index: number } | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showTransictionModal, setShowTransictionModal] = useState(false);
-  const [userTarget, setUserTarget] = useState({}); 
+  const [userTarget, setUserTarget] = useState<{ row: T } | null>(null);
 
   const filteredData = data.filter((row) =>
     headers.some((header) =>
@@ -40,14 +36,14 @@ export function Table({
     )
   );
 
-  function handleAddSubmit(data: Row) {
-    onAdd?.(data);
+  function handleAddSubmit(formData: T) {
+    onAdd?.(formData);
     setShowAddForm(false);
   }
 
   return (
     <div>
-      <div className="table-toolbar" >
+      <div className="table-toolbar">
         <input
           type="text"
           className="table-search"
@@ -73,15 +69,18 @@ export function Table({
           {filteredData.map((row, index) => (
             <tr key={index}>
               {headers.map((header) => (
-                <td key={header}>{row[header]}</td>
+                <td key={header}>{String(row[header] ?? "")}</td>
               ))}
-              {showActions&& (
-                <td className="actions-cell" >
+              {showActions && (
+                <td className="actions-cell">
                   <button className="btn-icon btn-delete" onClick={() => setDeleteTarget({ row, index })}>
                     Deletar
                   </button>
-                  <button className="btn-icon btn-transacao" onClick={() => {setShowTransictionModal(true); setUserTarget({row}) } }>
-                    Add Transacao 
+                  <button
+                    className="btn-icon btn-transacao"
+                    onClick={() => { setShowTransictionModal(true); setUserTarget({ row }); }}
+                  >
+                    Add Transação
                   </button>
                 </td>
               )}
@@ -97,10 +96,12 @@ export function Table({
         />
       )}
 
-      {showTransictionModal && (
-        <TransacaoFormModal onCancel={() => setShowTransictionModal(false)} userTarget={userTarget}/>
+      {showTransictionModal && userTarget && (
+        <TransacaoFormModal
+          onCancel={() => setShowTransictionModal(false)}
+          userTarget={userTarget}
+        />
       )}
-
 
       {showAddForm &&
         renderAddForm &&
