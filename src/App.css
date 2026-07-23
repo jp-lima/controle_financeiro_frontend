@@ -52,3 +52,34 @@ h1::after {
   color: #10151b;
   border-color: #4ade80;
 }
+
+.totais-gerais {
+  background: #151b22;
+  border: 1px solid #2a333d;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.totais-gerais h3 {
+  color: #8b95a1;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+}
+
+.totais-linha {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
+  color: #e8e6df;
+}
+
+.valor-positivo {
+  color: #4ade80;
+}
+
+.valor-negativo {
+  color: #f87171;
+}
