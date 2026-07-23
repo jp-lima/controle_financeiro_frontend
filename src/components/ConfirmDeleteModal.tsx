@@ -1,0 +1,34 @@
+import "../assets/CSS/Modal.css"; 
+// components/ConfirmDeleteModal.tsx
+interface ConfirmDeleteModalProps {
+  onConfirm: () => void;
+  onCancel: () => void;
+  message?: string;
+}
+
+export function ConfirmDeleteModal({
+  onCancel,
+  deleteTarget, 
+  message = "Tem certeza que deseja deletar este item?",
+}: ConfirmDeleteModalProps) {
+
+    const api_url = import.meta.env.VITE_API_URL; 
+    async function handleConfirm()
+    {
+      await fetch(`${api_url}/api/Usuarios/${deleteTarget.row.id}`, {
+        method:"DELETE"
+      }).then(res => res.ok && onCancel() )
+    }
+  return (
+    <div className="modal-overlay" onClick={onCancel}>
+      <div className="modal-box modal-danger" onClick={(e) => e.stopPropagation()}>
+        <p className="modal-message">{message}</p>
+        <div className="modal-actions">
+          <button className="btn-modal btn-cancel" onClick={onCancel}>Cancelar</button>
+          <button className="btn-modal btn-confirm-delete" onClick={handleConfirm}>Confirmar</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+

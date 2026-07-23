@@ -1,0 +1,149 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-box {
+  background: #151b22;
+  border: 1px solid #2a333d;
+  padding: 1.5rem;
+  border-radius: 10px;
+  min-width: 320px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.modal-danger {
+  border-left: 3px solid #f87171;
+}
+
+.modal-message {
+  color: #e8e6df;
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.btn-modal {
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-cancel {
+  background: transparent;
+  border-color: #2a333d;
+  color: #e8e6df;
+}
+
+.btn-cancel:hover {
+  background: #1a2129;
+}
+
+.btn-confirm-delete {
+  background: #f87171;
+  color: #10151b;
+  font-weight: 600;
+}
+
+.btn-confirm-delete:hover {
+  background: #ef5757;
+}
+
+.modal-title {
+  color: #e8e6df;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  color: #8b95a1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.form-input,
+.select-tipo {
+  width: 100%;
+  background: #1a2129;
+  border: 1px solid #2a333d;
+  color: #e8e6df;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.select-tipo:focus {
+  outline: none;
+  border-color: #4ade80;
+}
+
+.select-tipo {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tipo-receita {
+  color: #4ade80;
+  border-color: #22392c;
+}
+
+.tipo-despesa {
+  color: #f87171;
+  border-color: #3d2429;
+}
+
+.valor-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.valor-prefix {
+  position: absolute;
+  left: 0.75rem;
+  color: #6b7684;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.valor-input {
+  padding-left: 2.1rem;
+}
+
+.btn-confirm-save {
+  background: #4ade80;
+  color: #10151b;
+  font-weight: 600;
+}
+
+.btn-confirm-save:hover {
+  background: #3fd070;
+}
