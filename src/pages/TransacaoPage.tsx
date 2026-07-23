@@ -40,8 +40,6 @@ export function TransacaoPage()
      <Table
         headers={headers}
         data={transacoes}
-        showDelete={false}
-        onDelete={(row, index) => console.log("deletar", row, index)}
       />
 
   )
