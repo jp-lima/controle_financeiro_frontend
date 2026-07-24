@@ -28,6 +28,7 @@ export function TransacaoFormModal({ onCancel, userTarget }: TransacaoFormModalP
           valor: Number(valor),
         }),
       });
+      // se a resposta for um 200 fechar o modal
       if (res.ok) onCancel();
     } catch (err) {
       console.error("[TransacaoFormModal]", err);

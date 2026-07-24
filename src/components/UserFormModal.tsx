@@ -22,6 +22,7 @@ export function UserFormModal({ onCancel }: UserFormModalProps) {
           "Content-Type":"application/json"
         }, 
         body:JSON.stringify({nome, idade})
+      // se a resposta for um 200 fechar o modal 
       }).then(res => res.ok && onCancel() )
 
     } catch(err)

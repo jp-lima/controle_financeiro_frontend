@@ -32,7 +32,7 @@ export function UsuarioPage() {
         }
         const dados: Usuario[] = await response.json();
 
-        // calcula os totais de cada usuário a partir das transações vinculadas
+        // foreach para calcular receitas totais, despesas totais e saldo final de cada usuario com base na lista de transacoes  
         dados.forEach((u) => {
           u.total_receita = 0;
           u.total_despesas = 0;
@@ -44,7 +44,7 @@ export function UsuarioPage() {
             }
           });
           u.saldo = u.total_receita - u.total_despesas;
-        });
+        }); 
 
         setUsuarios(dados);
       } catch (err) {

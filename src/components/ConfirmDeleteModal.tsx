@@ -17,6 +17,7 @@ export function ConfirmDeleteModal({
   async function handleConfirm() {
     const id = deleteTarget.row.id as string;
     const res = await fetch(`${api_url}/api/Usuarios/${id}`, { method: "DELETE" });
+    // se a resposta for um 200 fechar o modal 
     if (res.ok) onCancel();
   }
 
