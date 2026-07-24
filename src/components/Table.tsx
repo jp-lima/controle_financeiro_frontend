@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { ConfirmDeleteModal } from "./ConfirmDeleteModal";
 import { TransacaoFormModal } from "./TransacoesFormModal";
+import '../assets/CSS/Table.css'
 
 type Row = Record<string, unknown>;
 

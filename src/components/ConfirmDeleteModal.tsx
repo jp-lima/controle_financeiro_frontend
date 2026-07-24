@@ -1,4 +1,5 @@
 type Row = Record<string, unknown>;
+import "../assets/CSS/Modal.css"
 
 interface ConfirmDeleteModalProps {
   onCancel: () => void;

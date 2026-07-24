@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../assets/CSS/Modal.css"
 
 type TipoTransacao = "Receita" | "Despesa";
 type Row = Record<string, unknown>;

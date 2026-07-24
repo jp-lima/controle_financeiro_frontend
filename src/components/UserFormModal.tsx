@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../assets/CSS/Modal.css"
 
 interface UserFormModalProps {
   onCancel: () => void;
